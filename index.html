@@ -7,7 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="checkbox" class="checkbox">
-    <img src="images/Vector.png" srcset="images/Vector.png 1x , ./images/Vector@2x.png 2x" alt="">
+    <p>Uy vazifasini tekshirish uchun inputni checked qilishingiz kerak!</p>
+    <input type="checkbox" class="checkbox" id="toggle">
+    
+    <div class="animated-content" id="content">
+    <a href="uy ishi/index.html"><button class="btn">Uy vazifasi</button></a>
+    <p>Tabriklaymiz siz uy vazifasini tekshirishga tayyorsiz!</p>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const checkbox = document.getElementById('toggle');
+    const content = document.getElementById('content');
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            content.classList.add('show'); // Yashiringan elementni ko'rsatish
+        } else {
+            content.classList.remove('show'); // Yashiringan elementni yashirish
+        }
+    });
+});
+
+    </script>
 </body>
 </html>
