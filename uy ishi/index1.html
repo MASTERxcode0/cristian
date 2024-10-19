@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Circular Progress</title>
+    <style>
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 10;
+        }
+
+        .progress-circle .background {
+            stroke: #e6e6e6;
+        }
+
+        .progress-circle .progress {
+            stroke: #6a4dc9;
+            stroke-linecap: round;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1s;
+        }
+
+        .percentage {
+            font-size: 24px;
+            font-weight: bold;
+            fill: #333;
+        }
+
+        .container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container svg {
+            position: absolute;
+        }
+
+        .container .percentage-text {
+            position: relative;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <svg width="150" height="150" class="progress-circle">
+        <circle class="background" cx="75" cy="75" r="70"></circle>
+        <circle class="progress" cx="75" cy="75" r="70"></circle>
+    </svg>
+    <div class="percentage-text">90%</div>
+</div>
+
+<script>
+    function setProgress(percent) {
+        const circle = document.querySelector('.progress');
+        const radius = circle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        const offset = circumference - (percent / 100) * circumference;
+
+        circle.style.strokeDashoffset = offset;
+        document.querySelector('.percentage-text').textContent = `${percent}%`;
+    }
+
+    setProgress(90); // Foizni o'zgartirish uchun shu qiymatni o'zgartiring
+</script>
+
+</body>
+</html>
